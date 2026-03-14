@@ -1,0 +1,48 @@
+.page-container{
+  display:flex;
+  gap:30px;
+  padding:30px;
+  background:#0f172a;
+  min-height:100vh;
+  color:white;
+}
+
+.form-card{
+  width:380px;
+  background:#1e293b;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.form-card h2{
+  margin-bottom:20px;
+}
+
+.input{
+  width:100%;
+  padding:10px;
+  margin-bottom:12px;
+  border-radius:6px;
+  border:none;
+  background:#334155;
+  color:white;
+}
+
+.save-btn{
+  width:100%;
+  padding:12px;
+  background:#6366f1;
+  border:none;
+  border-radius:6px;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.map-panel{
+  flex:1;
+  background:#111827;
+  border-radius:12px;
+  padding:15px;
+}
