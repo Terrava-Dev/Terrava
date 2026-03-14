@@ -1,0 +1,31 @@
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\bin\Debug\net10.0\Terrava.Application.deps.json
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\bin\Debug\net10.0\Terrava.Application.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\bin\Debug\net10.0\Terrava.Application.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\bin\Debug\net10.0\Terrava.Domain.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\bin\Debug\net10.0\Terrava.Domain.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\Terrava.Application.csproj.AssemblyReference.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\Terrava.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\Terrava.Application.AssemblyInfoInputs.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\Terrava.Application.AssemblyInfo.cs
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\Terrava.Application.csproj.CoreCompileInputs.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\Terrava..91C26C60.Up2Date
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\Terrava.Application.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\refint\Terrava.Application.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\Terrava.Application.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Application\obj\Debug\net10.0\ref\Terrava.Application.dll
+D:\Terrava\backend\Terrava.Application\bin\Debug\net10.0\Terrava.Application.deps.json
+D:\Terrava\backend\Terrava.Application\bin\Debug\net10.0\Terrava.Application.dll
+D:\Terrava\backend\Terrava.Application\bin\Debug\net10.0\Terrava.Application.pdb
+D:\Terrava\backend\Terrava.Application\bin\Debug\net10.0\Terrava.Domain.dll
+D:\Terrava\backend\Terrava.Application\bin\Debug\net10.0\Terrava.Domain.pdb
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava.Application.csproj.AssemblyReference.cache
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava.Application.AssemblyInfoInputs.cache
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava.Application.AssemblyInfo.cs
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava.Application.csproj.CoreCompileInputs.cache
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava.Application.sourcelink.json
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava..91C26C60.Up2Date
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava.Application.dll
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\refint\Terrava.Application.dll
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\Terrava.Application.pdb
+D:\Terrava\backend\Terrava.Application\obj\Debug\net10.0\ref\Terrava.Application.dll

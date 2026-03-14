@@ -1,0 +1,23 @@
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\bin\Debug\net10.0\Terrava.Domain.deps.json
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\bin\Debug\net10.0\Terrava.Domain.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\bin\Debug\net10.0\Terrava.Domain.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.AssemblyInfoInputs.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.AssemblyInfo.cs
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\obj\Debug\net10.0\refint\Terrava.Domain.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Domain\obj\Debug\net10.0\ref\Terrava.Domain.dll
+D:\Terrava\backend\Terrava.Domain\bin\Debug\net10.0\Terrava.Domain.deps.json
+D:\Terrava\backend\Terrava.Domain\bin\Debug\net10.0\Terrava.Domain.dll
+D:\Terrava\backend\Terrava.Domain\bin\Debug\net10.0\Terrava.Domain.pdb
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.AssemblyInfoInputs.cache
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.AssemblyInfo.cs
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.csproj.CoreCompileInputs.cache
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.sourcelink.json
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.dll
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\refint\Terrava.Domain.dll
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\Terrava.Domain.pdb
+D:\Terrava\backend\Terrava.Domain\obj\Debug\net10.0\ref\Terrava.Domain.dll

@@ -1,0 +1,39 @@
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Infrastructure.deps.json
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Infrastructure.runtimeconfig.json
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Infrastructure.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Infrastructure.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Application.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Domain.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Application.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Domain.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.AssemblyInfo.cs
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava..1C398E1A.Up2Date
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\refint\Terrava.Infrastructure.dll
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.pdb
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.genruntimeconfig.cache
+C:\Users\Windows 10\source\repos\Terrava.api\Terrava.Infrastructure\obj\Debug\net10.0\ref\Terrava.Infrastructure.dll
+D:\Terrava\backend\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Infrastructure.deps.json
+D:\Terrava\backend\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Infrastructure.runtimeconfig.json
+D:\Terrava\backend\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Infrastructure.dll
+D:\Terrava\backend\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Infrastructure.pdb
+D:\Terrava\backend\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Application.dll
+D:\Terrava\backend\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Domain.dll
+D:\Terrava\backend\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Application.pdb
+D:\Terrava\backend\Terrava.Infrastructure\bin\Debug\net10.0\Terrava.Domain.pdb
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.csproj.AssemblyReference.cache
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.AssemblyInfoInputs.cache
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.AssemblyInfo.cs
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.sourcelink.json
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava..1C398E1A.Up2Date
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.dll
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\refint\Terrava.Infrastructure.dll
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.pdb
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\Terrava.Infrastructure.genruntimeconfig.cache
+D:\Terrava\backend\Terrava.Infrastructure\obj\Debug\net10.0\ref\Terrava.Infrastructure.dll

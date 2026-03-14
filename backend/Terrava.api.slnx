@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Terrava.api/Terrava.API.csproj" />
+  <Project Path="Terrava.Application/Terrava.Application.csproj" />
+  <Project Path="Terrava.Domain/Terrava.Domain.csproj" />
+  <Project Path="Terrava.Infrastructure/Terrava.Infrastructure.csproj" />
+</Solution>
