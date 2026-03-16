@@ -35,7 +35,7 @@ export default function SignupPage() {
     setLoading(true)
     setError("")
     try {
-      const res = await axios.post("https://localhost:7155/api/auth/register", {
+      const res = await axios.post("${import.meta.env.VITE_API_URL}/auth/register", {
         username: username.trim().toLowerCase(),
         password,
         fullName: fullName.trim(),
