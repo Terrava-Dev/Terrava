@@ -16,117 +16,103 @@ public class PropertiesController : ControllerBase
         _context = context;
     }
 
-    // ================================
-    // 🔹 CREATE
-    // POST: api/properties
-    // ================================
-    [HttpPost]
-    public async Task<ActionResult<Property>> CreateProperty(Property property)
+    private static object ProjectProperty(Property p) => new
     {
-        if (property == null)
-            return BadRequest("Property data is required.");
+        p.Id,
+        p.Title,
+        p.LocationName,
+        p.TotalAreaInSqFt,
+        p.PricePerAcre,
+        p.PricePerSqFt,
+        TotalPrice = p.TotalAreaInSqFt * p.PricePerSqFt,
+        p.Amenities,
+        p.PropertyType,
+        p.Status,
+        p.Notes,
+        p.AgentId,
+        Images = p.Images?
+            .Select(i => new { i.Id, i.ImageUrl, i.PropertyId }).ToList(),
+        BoundaryPoints = p.BoundaryPoints?
+            .Select(b => new { b.Id, b.Latitude, b.Longitude, b.PropertyId }).ToList(),
+    };
 
-        // Calculate PricePerAcre safely
-        if (property.TotalAreaInAcres > 0)
-        {
-            property.PricePerAcre =
-                property.TotalPrice / property.TotalAreaInAcres;
-        }
-
+    [HttpPost]
+    public async Task<IActionResult> CreateProperty([FromBody] Property property)
+    {
+        if (property == null) return BadRequest("Property data is required.");
         _context.Properties.Add(property);
         await _context.SaveChangesAsync();
-
-        return CreatedAtAction(
-            nameof(GetPropertyById),
-            new { id = property.Id },
-            property);
+        var created = await _context.Properties
+            .Include(p => p.Images).Include(p => p.BoundaryPoints)
+            .FirstAsync(p => p.Id == property.Id);
+        return CreatedAtAction(nameof(GetPropertyById), new { id = created.Id }, ProjectProperty(created));
     }
 
-    // ================================
-    // 🔹 READ ALL
-    // GET: api/properties
-    // ================================
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Property>>> GetAllProperties()
+    public async Task<IActionResult> GetAllProperties([FromQuery] int? agentId)
     {
-        var properties = await _context.Properties
-            .Include(p => p.Images)
-            .Include(p => p.BoundaryPoints)
-            .AsNoTracking()
-            .ToListAsync();
-
-        return Ok(properties);
+        var query = _context.Properties
+            .Include(p => p.Images).Include(p => p.BoundaryPoints).AsNoTracking();
+        if (agentId.HasValue) query = query.Where(p => p.AgentId == agentId.Value);
+        var list = await query.ToListAsync();
+        return Ok(list.Select(ProjectProperty));
     }
 
-    // ================================
-    // 🔹 READ BY ID
-    // GET: api/properties/{id}
-    // ================================
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Property>> GetPropertyById(int id)
+    public async Task<IActionResult> GetPropertyById(int id)
     {
         var property = await _context.Properties
-            .Include(p => p.Images)
-            .Include(p => p.BoundaryPoints)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(p => p.Id == id);
-
-        if (property == null)
-            return NotFound($"Property with ID {id} not found.");
-
-        return Ok(property);
+            .Include(p => p.Images).Include(p => p.BoundaryPoints)
+            .AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+        if (property == null) return NotFound($"Property with ID {id} not found.");
+        return Ok(ProjectProperty(property));
     }
 
-    // ================================
-    // 🔹 UPDATE
-    // PUT: api/properties/{id}
-    // ================================
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateProperty(int id, Property updatedProperty)
+    public async Task<IActionResult> UpdateProperty(int id, [FromBody] Property updatedProperty)
     {
-        if (id != updatedProperty.Id)
-            return BadRequest("ID mismatch.");
+        if (id != updatedProperty.Id) return BadRequest("ID mismatch.");
+        var existing = await _context.Properties.FirstOrDefaultAsync(p => p.Id == id);
+        if (existing == null) return NotFound($"Property with ID {id} not found.");
 
-        var existingProperty = await _context.Properties
-            .FirstOrDefaultAsync(p => p.Id == id);
-
-        if (existingProperty == null)
-            return NotFound($"Property with ID {id} not found.");
-
-
-        existingProperty.Title = updatedProperty.Title;
-        existingProperty.LocationName = updatedProperty.LocationName;
-        existingProperty.TotalAreaInAcres = updatedProperty.TotalAreaInAcres;
-        existingProperty.AgentId = updatedProperty.AgentId;
-
-        // Recalculate PricePerAcre
-        if (existingProperty.TotalAreaInAcres > 0)
-        {
-            existingProperty.PricePerAcre =
-                existingProperty.TotalPrice /
-                existingProperty.TotalAreaInAcres;
-        }
+        existing.Title = updatedProperty.Title;
+        existing.LocationName = updatedProperty.LocationName;
+        existing.TotalAreaInSqFt = updatedProperty.TotalAreaInSqFt;
+        existing.PricePerAcre = updatedProperty.PricePerAcre;
+        existing.PricePerSqFt = updatedProperty.PricePerSqFt;
+        existing.Amenities = updatedProperty.Amenities;
+        existing.PropertyType = updatedProperty.PropertyType;
+        existing.Status = updatedProperty.Status;
+        existing.Notes = updatedProperty.Notes;
+        existing.AgentId = updatedProperty.AgentId;
 
         await _context.SaveChangesAsync();
-
         return NoContent();
     }
 
-    // ================================
-    // 🔹 DELETE
-    // DELETE: api/properties/{id}
-    // ================================
+    // PATCH: api/properties/{id}/status  — quick status update without full PUT
+    [HttpPatch("{id:int}/status")]
+    public async Task<IActionResult> UpdateStatus(int id, [FromBody] StatusUpdateRequest req)
+    {
+        var existing = await _context.Properties.FirstOrDefaultAsync(p => p.Id == id);
+        if (existing == null) return NotFound();
+        existing.Status = req.Status;
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteProperty(int id)
     {
         var property = await _context.Properties.FindAsync(id);
-
-        if (property == null)
-            return NotFound($"Property with ID {id} not found.");
-
+        if (property == null) return NotFound($"Property with ID {id} not found.");
         _context.Properties.Remove(property);
         await _context.SaveChangesAsync();
-
         return NoContent();
     }
+}
+
+public class StatusUpdateRequest
+{
+    public string? Status { get; set; }
 }

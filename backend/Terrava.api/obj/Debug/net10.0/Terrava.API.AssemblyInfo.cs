@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Terrava.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0800d7eb5defecb67e5132fb794b2ca248d8833")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d433a2711e83cd520865fa2efeab1ed92a9965f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Terrava.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Terrava.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

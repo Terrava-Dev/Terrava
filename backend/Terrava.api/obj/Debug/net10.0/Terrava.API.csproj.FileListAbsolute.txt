@@ -316,7 +316,6 @@ D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.GeneratedMSBuildEdi
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.AssemblyInfoInputs.cache
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.AssemblyInfo.cs
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.csproj.CoreCompileInputs.cache
-D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.MvcApplicationPartsAssemblyInfo.cs
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.MvcApplicationPartsAssemblyInfo.cache
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.sourcelink.json
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\rjimswa.dswa.cache.json
@@ -328,10 +327,13 @@ D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\staticwebassets.build.json.cach
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\staticwebassets.development.json
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\swae.build.ex.cache
-D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava..588E34D5.Up2Date
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.dll
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\refint\Terrava.API.dll
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.pdb
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.genruntimeconfig.cache
 D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\ref\Terrava.API.dll
+D:\Terrava\backend\terrava.api\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Terrava\backend\Terrava.api\bin\Debug\net10.0\Terrava.API.staticwebassets.runtime.json
+D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\Terrava.API.MvcApplicationPartsAssemblyInfo.cs
+D:\Terrava\backend\Terrava.api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

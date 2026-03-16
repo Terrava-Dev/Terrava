@@ -30,11 +30,18 @@ public class TerravaDbContext : DbContext
             entity.Property(p => p.LocationName)
                   .HasMaxLength(200);
 
-            entity.Property(p => p.TotalAreaInAcres)
+            // renamed from TotalAreaInAcres → TotalAreaInSqFt
+            entity.Property(p => p.TotalAreaInSqFt)
                   .HasColumnType("decimal(18,2)");
 
             entity.Property(p => p.PricePerAcre)
                   .HasColumnType("decimal(18,2)");
+
+            entity.Property(p => p.PricePerSqFt)
+                  .HasColumnType("decimal(18,2)");
+
+            // TotalPrice is [NotMapped] — tell EF to ignore it explicitly
+            entity.Ignore(p => p.TotalPrice);
 
             entity.HasOne(p => p.Agent)
                   .WithMany(a => a.Properties)

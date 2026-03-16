@@ -1,0 +1,138 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Terrava\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|d:\\terrava\\backend\\terrava.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|solutionrelative:terrava.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|d:\\terrava\\backend\\terrava.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|solutionrelative:terrava.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BA481A0-AABF-1871-28F7-62AA439E29DC}|Terrava.Domain\\Terrava.Domain.csproj|d:\\terrava\\backend\\terrava.domain\\entities\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BA481A0-AABF-1871-28F7-62AA439E29DC}|Terrava.Domain\\Terrava.Domain.csproj|solutionrelative:terrava.domain\\entities\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|d:\\terrava\\backend\\terrava.api\\controllers\\propertiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|solutionrelative:terrava.api\\controllers\\propertiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|d:\\terrava\\backend\\terrava.api\\controllers\\propertyimagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|solutionrelative:terrava.api\\controllers\\propertyimagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|d:\\terrava\\backend\\terrava.api\\controllers\\propertyboundariescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|solutionrelative:terrava.api\\controllers\\propertyboundariescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|d:\\terrava\\backend\\terrava.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0A7E9790-CEF3-A8C1-5A52-89AAFD97577F}|Terrava.api\\Terrava.API.csproj|solutionrelative:terrava.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Terrava\\backend\\Terrava.api\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Terrava.api\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Terrava\\backend\\Terrava.api\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Terrava.api\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-16T13:33:25.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PropertiesController.cs",
+              "DocumentMoniker": "D:\\Terrava\\backend\\Terrava.api\\Controllers\\PropertiesController.cs",
+              "RelativeDocumentMoniker": "Terrava.api\\Controllers\\PropertiesController.cs",
+              "ToolTip": "D:\\Terrava\\backend\\Terrava.api\\Controllers\\PropertiesController.cs",
+              "RelativeToolTip": "Terrava.api\\Controllers\\PropertiesController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAkwFkAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T13:47:55.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Property.cs",
+              "DocumentMoniker": "D:\\Terrava\\backend\\Terrava.Domain\\Entities\\Property.cs",
+              "RelativeDocumentMoniker": "Terrava.Domain\\Entities\\Property.cs",
+              "ToolTip": "D:\\Terrava\\backend\\Terrava.Domain\\Entities\\Property.cs",
+              "RelativeToolTip": "Terrava.Domain\\Entities\\Property.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T14:36:22.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PropertyImagesController.cs",
+              "DocumentMoniker": "D:\\Terrava\\backend\\Terrava.api\\Controllers\\PropertyImagesController.cs",
+              "RelativeDocumentMoniker": "Terrava.api\\Controllers\\PropertyImagesController.cs",
+              "ToolTip": "D:\\Terrava\\backend\\Terrava.api\\Controllers\\PropertyImagesController.cs",
+              "RelativeToolTip": "Terrava.api\\Controllers\\PropertyImagesController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAywB8AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T15:00:49.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Terrava\\backend\\Terrava.api\\Program.cs",
+              "RelativeDocumentMoniker": "Terrava.api\\Program.cs",
+              "ToolTip": "D:\\Terrava\\backend\\Terrava.api\\Program.cs",
+              "RelativeToolTip": "Terrava.api\\Program.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAABEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T13:48:17.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PropertyBoundariesController.cs",
+              "DocumentMoniker": "D:\\Terrava\\backend\\Terrava.api\\Controllers\\PropertyBoundariesController.cs",
+              "RelativeDocumentMoniker": "Terrava.api\\Controllers\\PropertyBoundariesController.cs",
+              "ToolTip": "D:\\Terrava\\backend\\Terrava.api\\Controllers\\PropertyBoundariesController.cs",
+              "RelativeToolTip": "Terrava.api\\Controllers\\PropertyBoundariesController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAywCwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T08:05:31.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Terrava\\backend\\Terrava.api\\appsettings.json",
+              "RelativeDocumentMoniker": "Terrava.api\\appsettings.json",
+              "ToolTip": "D:\\Terrava\\backend\\Terrava.api\\appsettings.json",
+              "RelativeToolTip": "Terrava.api\\appsettings.json",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAqwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-15T13:56:45.57Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
