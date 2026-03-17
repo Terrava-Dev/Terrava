@@ -14,7 +14,7 @@ const STATUS_DOT_CLASS: Record<string, string> = {
   sold:        "status-dot-sold",
 }
 
-const BASE_URL = "https://localhost:7155"
+const BASE_URL = `${import.meta.env.VITE_API_URL}`
 
 function getBoundaryCenter(points: { latitude: number; longitude: number }[]) {
   if (!points || points.length === 0) return null

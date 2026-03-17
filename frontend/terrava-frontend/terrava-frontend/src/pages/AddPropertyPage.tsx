@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext"
 import "./AddProperty.css"
 import { PROPERTY_TYPES } from "../models/propertyTypes"
 
-const BASE_URL = "https://localhost:7155"
+const BASE_URL = `${import.meta.env.VITE_API_URL}`
 
 const AMENITIES = [
   { value: "water",    labelKey: "amenity_water",    icon: "💧" },

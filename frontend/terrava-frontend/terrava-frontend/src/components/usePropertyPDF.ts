@@ -18,7 +18,7 @@ type Property = {
   boundaryPoints?: BoundaryPoint[]
 }
 
-const BASE_URL = "https://localhost:7155"
+const BASE_URL = `${import.meta.env.VITE_API_URL}`
 
 const AMENITY_LABELS: Record<string, string> = {
   water: "💧 Water", electric: "⚡ Electric", road: "🛣️ Road Access",

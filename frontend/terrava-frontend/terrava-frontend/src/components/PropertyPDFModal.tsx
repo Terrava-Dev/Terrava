@@ -19,7 +19,7 @@ type Property = {
 
 type Props = { property: Property; onClose: () => void }
 
-const BASE_URL = "https://localhost:7155"
+const BASE_URL = `${import.meta.env.VITE_API_URL}`
 
 export default function PropertyPDFModal({ property, onClose }: Props) {
   const { generate }     = usePropertyPDF()
