@@ -59,7 +59,7 @@ export default function EditPropertyPage() {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/api/properties/${id}`)
+        const res = await axios.get(`${BASE_URL}/properties/${id}`)
         const p   = res.data
         setTitle(p.title)
         setLocationName(p.locationName ?? "")
@@ -134,7 +134,7 @@ export default function EditPropertyPage() {
     if (saving || !canSave) return
     setSaving(true); setError("")
     try {
-      await axios.put(`${BASE_URL}/api/properties/${id}`, {
+      await axios.put(`${BASE_URL}/properties/${id}`, {
         id: Number(id), title, locationName,
         totalAreaInSqFt: sqftInput,
         pricePerAcre:    pricePerSqft * 43560,
@@ -145,10 +145,10 @@ export default function EditPropertyPage() {
         agentId:         agent?.agentId,
       })
       if (points.length >= 3)
-        await axios.post(`${BASE_URL}/api/property-boundaries`,
+        await axios.post(`${BASE_URL}/property-boundaries`,
           points.map((p, i) => ({ propertyId: Number(id), latitude: p.lat, longitude: p.lng, orderIndex: i }))
         )
-      await Promise.all(deletingImgIds.map(imgId => axios.delete(`${BASE_URL}/api/property-images/${imgId}`)))
+      await Promise.all(deletingImgIds.map(imgId => axios.delete(`${BASE_URL}/property-images/${imgId}`)))
       const allNew: File[] = []
       if (mapSnapshot) {
         const blob = await fetch(mapSnapshot).then(r => r.blob())
@@ -158,7 +158,7 @@ export default function EditPropertyPage() {
       if (allNew.length > 0) {
         const fd = new FormData()
         allNew.forEach(f => fd.append("files", f))
-        await axios.post(`${BASE_URL}/api/property-images/upload/${id}`, fd)
+        await axios.post(`${BASE_URL}/property-images/upload/${id}`, fd)
       }
       setSaved(true)
       setTimeout(() => navigate("/"), 1800)

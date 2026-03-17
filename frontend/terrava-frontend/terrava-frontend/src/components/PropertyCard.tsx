@@ -112,7 +112,7 @@ export default function PropertyCard({ property, index = 0, onDeleted, onStatusC
   const handleDelete = async () => {
     setDeleting(true); setDeleteErr("")
     try {
-      await fetch(`${BASE_URL}/api/properties/${property.id}`, { method: "DELETE" })
+      await fetch(`${BASE_URL}/properties/${property.id}`, { method: "DELETE" })
       setShowConfirm(false)
       showToastMsg("Property deleted")
       setTimeout(() => onDeleted?.(property.id), 1800)
@@ -125,7 +125,7 @@ export default function PropertyCard({ property, index = 0, onDeleted, onStatusC
   const handleStatusChange = async (newStatus: string) => {
     setShowStatusMenu(false); setUpdatingStatus(true)
     try {
-      await fetch(`${BASE_URL}/api/properties/${property.id}/status`, {
+      await fetch(`${BASE_URL}/properties/${property.id}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),

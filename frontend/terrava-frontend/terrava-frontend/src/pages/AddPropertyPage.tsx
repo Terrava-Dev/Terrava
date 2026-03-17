@@ -95,7 +95,7 @@ export default function AddPropertyPage() {
     if (saving || !canSave) return
     setSaving(true); setError("")
     try {
-      const response = await axios.post(`${BASE_URL}/api/properties`, {
+      const response = await axios.post(`${BASE_URL}/properties`, {
         title, locationName,
         totalAreaInSqFt: sqftInput,
         pricePerAcre:    pricePerSqft * 43560,
@@ -109,7 +109,7 @@ export default function AddPropertyPage() {
 
       if (points.length >= 3) {
         try {
-          await axios.post(`${BASE_URL}/api/property-boundaries`,
+          await axios.post(`${BASE_URL}/property-boundaries`,
             points.map((p, i) => ({ propertyId, latitude: p.lat, longitude: p.lng, orderIndex: i }))
           )
         } catch (e) {
@@ -128,7 +128,7 @@ export default function AddPropertyPage() {
         const fd = new FormData()
         allFiles.forEach(f => fd.append("files", f))
         // Do NOT set Content-Type manually — browser sets it with correct boundary
-        await axios.post(`${BASE_URL}/api/property-images/upload/${propertyId}`, fd)
+        await axios.post(`${BASE_URL}/property-images/upload/${propertyId}`, fd)
       }
       setSaved(true)
       setTimeout(() => navigate("/"), 1800)
