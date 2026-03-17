@@ -150,7 +150,7 @@ export default function PropertyCard({ property, index = 0, onDeleted, onStatusC
         {/* Thumbnail */}
         <div className="pcard-thumb">
           {mainImg
-            ? <img src={`${BASE_URL}${mainImg}`} alt={property.title} className="pcard-thumb-img" />
+            ? <img src={`${BASE_URL}/uploads/${mainImg?.replace(/^\/?(uploads\/)?/, '')}`} alt={property.title} className="pcard-thumb-img" />
             : <div className="pcard-thumb-empty">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="1.5" strokeLinecap="round">
                   <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
@@ -284,7 +284,7 @@ export default function PropertyCard({ property, index = 0, onDeleted, onStatusC
             {/* Image carousel */}
             {images.length > 0 && (
               <div className="detail-carousel">
-                <img src={`${BASE_URL}${images[imgIndex].imageUrl}`} alt="" className="detail-carousel-img" />
+                <img src={`${BASE_URL}/uploads/${images[imgIndex].imageUrl?.replace(/^\/?(uploads\/)?/, '')}`} alt="" className="detail-carousel-img" />
                 {images.length > 1 && (
                   <>
                     <button className="detail-arrow left" onClick={() => setImgIndex(i => (i - 1 + images.length) % images.length)}>‹</button>
