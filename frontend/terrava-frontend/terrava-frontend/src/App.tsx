@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate, useParams } from "react-router-dom"
 import { useAuth } from "./context/AuthContext"
 import Layout from "./components/Layout"
 import PropertyListPage from "./pages/PropertyListPage"
@@ -8,6 +8,7 @@ import EditPropertyPage from "./pages/EditPropertyPage"
 import SignupPage from "./pages/SignupPage"
 import MarketingPage from "./pages/MarketingPage"
 import MarketingPropertyPage  from "./pages/MarketingPropertyPage"
+import LandingPage from "./pages/LandingPage"
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { agent } = useAuth()
@@ -15,15 +16,25 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }
 
+function HomeRoute() {
+  const { agent } = useAuth()
+  if (agent) return <Navigate to="/properties" replace />
+  return <LandingPage />
+}
+
+function LegacySharePropertyRedirect() {
+  const { propertyId } = useParams()
+  return <Navigate to={propertyId ? `/share-property/${propertyId}` : "/share-property"} replace />
+}
+
 function App() {
   return (
     <Routes>
-      <Route path="/marketing" element={<MarketingPage />} />
-      <Route path="/marketing/:propertyId" element={<MarketingPropertyPage />} />
+      <Route path="/" element={<HomeRoute />} />
       <Route path="/login"  element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
 
-      <Route path="/" element={
+      <Route path="/properties" element={
         <ProtectedRoute>
           <Layout><PropertyListPage /></Layout>
         </ProtectedRoute>
@@ -39,6 +50,21 @@ function App() {
           <Layout><EditPropertyPage /></Layout>
         </ProtectedRoute>
       }/>
+
+      <Route path="/share-property" element={
+        <ProtectedRoute>
+          <Layout><MarketingPage /></Layout>
+        </ProtectedRoute>
+      }/>
+
+      <Route path="/share-property/:propertyId" element={
+        <ProtectedRoute>
+          <Layout><MarketingPropertyPage /></Layout>
+        </ProtectedRoute>
+      }/>
+
+      <Route path="/marketing" element={<Navigate to="/share-property" replace />} />
+      <Route path="/marketing/:propertyId" element={<LegacySharePropertyRedirect />} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

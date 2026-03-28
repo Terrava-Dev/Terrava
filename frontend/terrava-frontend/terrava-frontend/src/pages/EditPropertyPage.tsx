@@ -5,6 +5,7 @@ import PropertyMap from "../components/PropertyMap"
 import { LatLng } from "leaflet"
 import { useLang } from "../context/LanguageContext"
 import { useAuth } from "../context/AuthContext"
+import { uploadPropertyImages } from "../services/propertyImageUpload"
 import "./AddProperty.css"
 import { PROPERTY_TYPES } from "../models/propertyTypes"
 
@@ -45,6 +46,11 @@ export default function EditPropertyPage() {
   const [points, setPoints]             = useState<LatLng[]>([])
   const [mapArea, setMapArea]           = useState(0)
 
+  // ── NEW: DTCP / RERA ──────────────────────────────
+  const [dtcpApproved, setDtcpApproved] = useState(false)
+  const [reraApproved, setReraApproved] = useState(false)
+  const [reraNumber, setReraNumber]     = useState("")
+
   const [existingImages, setExistingImages] = useState<ExistingImage[]>([])
   const [deletingImgIds, setDeletingImgIds] = useState<number[]>([])
   const [newImages, setNewImages]           = useState<File[]>([])
@@ -69,10 +75,14 @@ export default function EditPropertyPage() {
         if (p.notes)    setNotes(p.notes)
         if (p.propertyType) {
           const parts = (p.propertyType as string).split(",").filter(Boolean)
-          // First part is the main type, rest are sub-types
           if (parts.length > 0) setPropertyType(parts[0])
           if (parts.length > 1) setSubTypes(parts.slice(1))
         }
+        // Load DTCP / RERA
+        setDtcpApproved(!!p.dtcpApproved)
+        setReraApproved(!!p.reraApproved)
+        setReraNumber(p.reraNumber ?? "")
+
         setExistingImages(p.images ?? [])
         if (p.boundaryPoints?.length)
           setPoints(p.boundaryPoints.map((bp: { latitude: number; longitude: number }) => new LatLng(bp.latitude, bp.longitude)))
@@ -143,6 +153,9 @@ export default function EditPropertyPage() {
         propertyType:    [propertyType, ...subTypes].join(","),
         notes,
         agentId:         agent?.agentId,
+        dtcpApproved,
+        reraApproved,
+        reraNumber:      reraApproved ? reraNumber : "",
       })
       if (points.length >= 3)
         await axios.post(`${BASE_URL}/property-boundaries`,
@@ -156,12 +169,10 @@ export default function EditPropertyPage() {
       }
       allNew.push(...newImages)
       if (allNew.length > 0) {
-        const fd = new FormData()
-        allNew.forEach(f => fd.append("files", f))
-        await axios.post(`${BASE_URL}/property-images/upload/${id}`, fd)
+        await uploadPropertyImages(`${BASE_URL}/property-images/upload/${id}`, allNew)
       }
       setSaved(true)
-      setTimeout(() => navigate("/"), 1800)
+      setTimeout(() => navigate("/properties"), 1800)
     } catch { setError(t("error_msg")) }
     finally { setSaving(false) }
   }
@@ -186,14 +197,14 @@ export default function EditPropertyPage() {
     <div className="add-page"><div className="success-screen">
       <div className="success-icon">❌</div>
       <h2 className="success-title">Not Found</h2>
-      <button className="next-btn" style={{maxWidth:200}} onClick={() => navigate("/")}>Go Home</button>
+      <button className="next-btn" style={{maxWidth:200}} onClick={() => navigate("/properties")}>Go Home</button>
     </div></div>
   )
 
   return (
     <div className="add-page">
       <div className="add-topbar">
-        <button className="back-btn" onClick={() => navigate("/")}>
+        <button className="back-btn" onClick={() => navigate("/properties")}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div>
@@ -203,10 +214,9 @@ export default function EditPropertyPage() {
       </div>
 
       <div className="sp-layout">
-
-        {/* LEFT */}
         <div className="sp-left">
 
+          {/* Basic Info */}
           <div className="sp-section">
             <div className="sp-section-label"><span className="sp-section-icon">📋</span> Basic Info</div>
             <div className="field-group">
@@ -247,6 +257,47 @@ export default function EditPropertyPage() {
             </div>
           </div>
 
+          {/* ── DTCP / RERA ── */}
+          <div className="sp-section">
+            <div className="sp-section-label"><span className="sp-section-icon">📜</span> Legal Approvals</div>
+            <div className="approval-grid">
+
+              <button
+                className={`approval-btn ${dtcpApproved ? "approval-active approval-dtcp" : ""}`}
+                onClick={() => setDtcpApproved(p => !p)}
+              >
+                <div className="approval-icon">🏛️</div>
+                <div className="approval-name">DTCP</div>
+                <div className="approval-sub">Approved</div>
+                {dtcpApproved && <span className="approval-check">✓</span>}
+              </button>
+
+              <button
+                className={`approval-btn ${reraApproved ? "approval-active approval-rera" : ""}`}
+                onClick={() => setReraApproved(p => !p)}
+              >
+                <div className="approval-icon">🏗️</div>
+                <div className="approval-name">RERA</div>
+                <div className="approval-sub">Registered</div>
+                {reraApproved && <span className="approval-check">✓</span>}
+              </button>
+
+            </div>
+
+            {reraApproved && (
+              <div className="field-group" style={{ marginTop: 12 }}>
+                <label className="field-label">RERA Number <span className="optional">(optional)</span></label>
+                <input
+                  className="field-input"
+                  placeholder="e.g. TN/01/Building/0001/2024"
+                  value={reraNumber}
+                  onChange={e => setReraNumber(e.target.value)}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Area & Price */}
           <div className="sp-section">
             <div className="sp-section-label"><span className="sp-section-icon">📐</span> Area & Price</div>
             <div className="sp-row">
@@ -282,6 +333,7 @@ export default function EditPropertyPage() {
             )}
           </div>
 
+          {/* Amenities */}
           <div className="sp-section">
             <div className="sp-section-label"><span className="sp-section-icon">✨</span> Amenities</div>
             <div className="amenity-grid">
@@ -295,6 +347,7 @@ export default function EditPropertyPage() {
             </div>
           </div>
 
+          {/* Photos */}
           <div className="sp-section">
             <div className="sp-section-label"><span className="sp-section-icon">📸</span> Photos <span className="sp-optional">{totalImages}/6</span></div>
             {existingImages.length > 0 && (
@@ -338,19 +391,15 @@ export default function EditPropertyPage() {
             )}
           </div>
 
+          {/* Notes */}
           <div className="sp-section">
             <div className="sp-section-label"><span className="sp-section-icon">📝</span> Notes <span className="sp-optional">optional</span></div>
             <textarea className="field-input field-textarea" placeholder={t("notes_ph")} value={notes} onChange={e => setNotes(e.target.value)} rows={3}/>
           </div>
 
-          {error && <div className="error-msg">{error}</div>}
-          <button className={`save-btn ${saving?"saving":""} ${!canSave?"disabled":""}`} onClick={submitUpdate} disabled={saving||!canSave}>
-            {saving ? <><span className="spinner"/>{t("saving")}</> :
-              <><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save Changes</>}
-          </button>
         </div>
 
-        {/* RIGHT: map */}
+        {/* Map */}
         <div className="sp-right">
           <div className="sp-section sp-map-section">
             <div className="sp-section-label"><span className="sp-section-icon">🗺️</span> Land Boundary <span className="sp-optional">optional</span></div>
@@ -373,6 +422,14 @@ export default function EditPropertyPage() {
               )}
             </div>
           </div>
+        </div>
+
+        <div className="sp-actions">
+          {error && <div className="error-msg">{error}</div>}
+          <button className={`save-btn ${saving?"saving":""} ${!canSave?"disabled":""}`} onClick={submitUpdate} disabled={saving||!canSave}>
+            {saving ? <><span className="spinner"/>{t("saving")}</> :
+              <><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save Changes</>}
+          </button>
         </div>
 
       </div>

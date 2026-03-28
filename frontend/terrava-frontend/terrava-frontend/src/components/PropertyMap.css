@@ -7,8 +7,10 @@
 /* ── Toolbar ─────────────────────────────────────── */
 .pmap-toolbar {
   padding: 10px 12px 8px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 /* Segmented control group */
@@ -16,8 +18,8 @@
   display: flex;
   gap: 3px;
   margin-bottom: 10px;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
+  background: rgba(255,255,255,0.52);
+  border: 1.5px solid rgba(255,255,255,0.75);
   border-radius: 10px;
   padding: 3px;
   width: fit-content;
@@ -47,9 +49,9 @@
 }
 
 .pmap-tab.active {
-  background: var(--amber);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(232,160,32,0.35);
+  background: linear-gradient(135deg, #ffd977, #f0b23f);
+  color: #fffdf8;
+  box-shadow: 0 8px 20px rgba(240,178,63,0.3);
 }
 
 .pmap-locate { color: var(--text-2); }
@@ -62,11 +64,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
+  background: rgba(255,255,255,0.58);
+  border: 1.5px solid rgba(255,255,255,0.76);
   border-radius: 8px;
   padding: 8px 12px;
   transition: border-color 0.2s, box-shadow 0.2s;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .pmap-input-wrap:focus-within {
@@ -106,10 +110,12 @@
   top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
+  background: rgba(255,255,255,0.82);
+  border: 1.5px solid rgba(255,255,255,0.78);
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 9999;
   overflow: hidden;
   max-height: 200px;
@@ -147,10 +153,10 @@
 
 .pmap-latlng-row .pmap-input {
   flex: 1;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid rgba(255,255,255,0.76);
   border-radius: 8px;
   padding: 8px 12px;
-  background: var(--bg);
+  background: rgba(255,255,255,0.58);
   transition: border-color 0.2s;
 }
 
@@ -161,8 +167,8 @@
 
 .pmap-go-btn {
   padding: 8px 18px;
-  background: var(--amber);
-  color: #fff;
+  background: linear-gradient(135deg, #ffd977, #f0b23f);
+  color: #fffdf8;
   border: none;
   border-radius: 8px;
   font-size: 13px;
@@ -199,8 +205,10 @@
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
+  background: rgba(255,255,255,0.52);
+  border-top: 1px solid rgba(255,255,255,0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .pmap-ctrl-btn {
@@ -209,8 +217,8 @@
   gap: 5px;
   padding: 6px 12px;
   border-radius: 8px;
-  border: 1.5px solid var(--border);
-  background: var(--bg);
+  border: 1.5px solid rgba(255,255,255,0.76);
+  background: rgba(255,255,255,0.56);
   color: var(--text-2);
   font-size: 12px;
   font-weight: 600;
@@ -235,8 +243,8 @@
 
 .pmap-area-chip {
   margin-left: auto;
-  background: #f0fdf4;
-  border: 1.5px solid #86efac;
+  background: rgba(220, 252, 231, 0.76);
+  border: 1.5px solid rgba(134, 239, 172, 0.9);
   color: #16a34a;
   border-radius: 8px;
   padding: 5px 12px;

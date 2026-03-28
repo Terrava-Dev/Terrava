@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 import { useAuth } from "../context/AuthContext"
 import { useLang } from "../context/LanguageContext"
+import appLogo from "../assets/logo.png"
 import "./AuthPage.css"
 
 export default function SignupPage() {
@@ -42,7 +43,7 @@ export default function SignupPage() {
         phone:    phone.trim(),
       })
       login(res.data)
-      navigate("/")
+      navigate("/properties")
     } catch (err: unknown) {
       if (axios.isAxiosError(err) && err.response?.data?.message) {
         setError(err.response.data.message)
@@ -59,13 +60,18 @@ export default function SignupPage() {
       <div className="auth-card">
 
         <div className="auth-logo">
-          <div className="auth-logo-icon">T</div>
-          <span className="auth-logo-text">Terrava</span>
+          <div className="auth-logo-icon">
+            <img src={appLogo} alt="Terrava" className="auth-logo-image" />
+          </div>
+          <div className="auth-logo-copy">
+            <span className="auth-logo-text">Terrava</span>
+            <span className="auth-company">A JeeSha Group company</span>
+          </div>
         </div>
 
-        <h1 className="auth-title">
+        {/* <h1 className="auth-title">
           {lang === "ta" ? "கணக்கு உருவாக்கு" : "Create Account"}
-        </h1>
+        </h1> */}
         <p className="auth-sub">
           {lang === "ta" ? "புதிய முகவர் கணக்கு" : "Register as a new agent"}
         </p>

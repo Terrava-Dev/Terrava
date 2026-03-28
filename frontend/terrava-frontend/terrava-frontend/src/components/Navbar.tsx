@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import appLogo from "../assets/logo.png"
 import "./Navbar.css"
 
 export default function Navbar() {
@@ -11,14 +12,19 @@ export default function Navbar() {
       <div className="navbar-inner">
 
         {/* Logo */}
-        <div className="navbar-logo" onClick={() => navigate("/")}>
-          <span className="logo-icon">T</span>
-          <span className="logo-text">Terrava</span>
+        <div className="navbar-logo" onClick={() => navigate("/properties")}>
+          <span className="logo-icon">
+            <img src={appLogo} alt="Terrava" className="logo-image" />
+          </span>
+          <span className="logo-copy">
+            <span className="logo-text">Terrava</span>
+            <span className="logo-sub">JeeSha Group</span>
+          </span>
         </div>
 
         {/* Desktop links */}
         <div className="navbar-links">
-          <a href="/" className="nav-link">Properties</a>
+          <a href="/properties" className="nav-link">Properties</a>
         </div>
 
         {/* Desktop CTA */}
@@ -44,7 +50,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="mobile-menu">
-          <a href="/" className="mobile-link" onClick={() => setMenuOpen(false)}>
+          <a href="/properties" className="mobile-link" onClick={() => setMenuOpen(false)}>
             Properties
           </a>
           <button

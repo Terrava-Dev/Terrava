@@ -1,6 +1,6 @@
 .add-page {
   min-height: 100%;
-  background: var(--bg);
+  background: transparent;
   display: flex;
   flex-direction: column;
 }
@@ -11,8 +11,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px 12px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.56);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
   gap: 12px;
   position: sticky;
   top: 0;
@@ -21,8 +23,8 @@
 
 .back-btn {
   width: 38px; height: 38px;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.64);
+  border: 1.5px solid var(--border-strong);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
@@ -61,8 +63,8 @@
 
 .field-input {
   width: 100%;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1.5px solid var(--border-strong);
   border-radius: var(--radius-md);
   padding: 12px 14px;
   font-size: 14px; color: var(--text-1);
@@ -151,6 +153,7 @@
 /* ── Buttons ── */
 .save-btn, .next-btn {
   width: 100%;
+  max-width: 320px;
   display: flex; align-items: center; justify-content: center; gap: 8px;
   background: var(--amber); color: white;
   border: none; border-radius: 100px;
@@ -260,6 +263,7 @@
   display: flex;
   flex-direction: column;
   padding: 16px 16px 48px;
+  gap: 0;
 }
 
 .sp-left, .sp-right {
@@ -270,11 +274,13 @@
 /* ── Section card ── */
 .sp-section {
   background: var(--surface);
-  border: 1px solid var(--border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: var(--radius-lg);
   padding: 16px 16px 12px;
   margin-bottom: 12px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: var(--glass-shadow-soft);
 }
 
 .sp-section-label {
@@ -300,7 +306,33 @@
   padding: 2px 8px;
 }
 
-.sp-row { display: flex; gap: 10px; }
+.sp-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.sp-row > .field-group {
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+.sp-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.sp-actions .save-btn {
+  margin-top: 0;
+  margin-left: auto;
+}
+
+.sp-actions .error-msg {
+  margin-bottom: 0;
+}
 
 /* ── Map section ── */
 .sp-map-section { padding-bottom: 0; overflow: hidden; }
@@ -359,7 +391,10 @@
 
 /* Desktop: single column, just wider padding */
 @media (min-width: 960px) {
-  .sp-layout { padding: 24px 32px 56px; max-width: 720px; }
+  .sp-layout {
+    padding: 24px 32px 56px;
+    max-width: 720px;
+  }
   .amenity-grid { grid-template-columns: repeat(6, 1fr); }
   .add-topbar { padding: 18px 32px 14px; }
 }
@@ -424,7 +459,123 @@
   color: #16a34a;
   font-weight: 700;
 }
+/* ─── ADD TO BOTTOM OF AddProperty.css ───────────────────────────────────
+   Legal Approvals — DTCP / RERA section
+   ─────────────────────────────────────────────────────────────────────── */
 
+.approval-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.approval-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 10px 12px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.approval-btn:hover {
+  border-color: var(--amber);
+  background: var(--amber-light);
+}
+
+.approval-btn.approval-active {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.approval-btn.approval-dtcp.approval-active {
+  background: #eff6ff;
+  border-color: #3b82f6;
+}
+
+.approval-btn.approval-rera.approval-active {
+  background: #f0fdf4;
+  border-color: #22c55e;
+}
+
+.approval-icon {
+  font-size: 26px;
+  margin-bottom: 2px;
+}
+
+.approval-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-1);
+  letter-spacing: 0.5px;
+}
+
+.approval-btn.approval-dtcp.approval-active .approval-name { color: #2563eb; }
+.approval-btn.approval-rera.approval-active .approval-name { color: #16a34a; }
+
+.approval-sub {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.approval-check {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  color: white;
+}
+
+.approval-dtcp.approval-active .approval-check { background: #3b82f6; }
+.approval-rera.approval-active .approval-check  { background: #22c55e; }
 @media (min-width: 960px) {
   .subtype-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .add-topbar {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .sp-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sp-row > .field-group {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .sp-row > .field-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .approval-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sp-actions .save-btn {
+    max-width: none;
+    margin-left: 0;
+  }
 }

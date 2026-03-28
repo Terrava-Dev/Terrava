@@ -4,6 +4,7 @@ export type Agent = {
   agentId:  number
   username: string
   fullName: string
+  phone?:   string
   token:    string
 }
 

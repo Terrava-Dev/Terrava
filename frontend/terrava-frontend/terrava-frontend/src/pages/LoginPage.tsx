@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 import { useAuth } from "../context/AuthContext"
 import { useLang } from "../context/LanguageContext"
+import appLogo from "../assets/logo.png"
 import "./AuthPage.css"
 
 export default function LoginPage() {
@@ -29,7 +30,7 @@ export default function LoginPage() {
         password,
       })
       login(res.data)
-      navigate("/")
+      navigate("/properties")
     } catch (err: unknown) {
       if (axios.isAxiosError(err) && err.response?.data?.message) {
         setError(err.response.data.message)
@@ -51,17 +52,22 @@ export default function LoginPage() {
 
         {/* Logo */}
         <div className="auth-logo">
-          <div className="auth-logo-icon">T</div>
-          <span className="auth-logo-text">Terrava</span>
+          <div className="auth-logo-icon">
+            <img src={appLogo} alt="Terrava" className="auth-logo-image" />
+          </div>
+          <div className="auth-logo-copy">
+            <span className="auth-logo-text">Terrava</span>
+            <span className="auth-company">A JeeSha Group company</span>
+          </div>
         </div>
 
-        <h1 className="auth-title">
+        {/* <h1 className="auth-title">
           {lang === "ta" ? "உள்நுழைக" : "Agent Login"}
-        </h1>
+        </h1> */}
         <p className="auth-sub">
           {lang === "ta"
             ? "உங்கள் கணக்கில் உள்நுழைக"
-            : "Sign in to your agent account"}
+            : "Login to your agent account"}
         </p>
 
         {error && (

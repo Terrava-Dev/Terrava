@@ -29,7 +29,7 @@ export const translations = {
     per_acre:      "Per Acre",
     enquiries:     "Enquiries",
     whatsapp:      "WhatsApp",
-    pdf:           "PDF",
+    pdf:           "Save Image",
     link:          "Link",
     land:          "Land",
 
@@ -131,7 +131,7 @@ export const translations = {
     per_acre:      "ஒரு ஏக்கருக்கு",
     enquiries:     "விசாரணைகள்",
     whatsapp:      "வாட்ஸாப்",
-    pdf:           "PDF",
+    pdf:           "Save Image",
     link:          "இணைப்பு",
     land:          "நிலம்",
 
