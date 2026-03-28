@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Terrava.API.Services;
 using Terrava.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,27 +26,32 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.PropertyNamingPolicy =
             System.Text.Json.JsonNamingPolicy.CamelCase;
     });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddHttpClient("claude");
+builder.Services.AddScoped<MarketingService>();
 
 builder.Services.AddDbContext<TerravaDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// ── CORS ──────────────────────────────────────────────────────────────────
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
-        policy =>
-        {
-            policy.WithOrigins(
-                "http://localhost:5173",
-                "http://localhost:5174"
-            )
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        var origins = builder.Configuration["AllowedOrigins"]!
+            .Split(",", StringSplitOptions.RemoveEmptyEntries);
+        policy.WithOrigins(origins)
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
 });
 
+// ── JWT Authentication ────────────────────────────────────────────────────
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -62,27 +68,32 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+// ─────────────────────────────────────────────────────────────────────────
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-// Program.cs — add before app.UseHttpsRedirection()
+// ── Swagger (all environments) ────────────────────────────────────────────
+app.UseSwagger();
+app.UseSwaggerUI();
+
+// ── CORS must be FIRST ────────────────────────────────────────────────────
+app.UseCors("AllowFrontend");
+
+// ── HTTPS redirect (production only) ─────────────────────────────────────
 if (!app.Environment.IsDevelopment())
 {
-    app.UseHttpsRedirection();  // only force HTTPS in production
+    app.UseHttpsRedirection();
 }
-// Serve uploaded images from wwwroot/uploads/
-var uploadsPath = Path.Combine(builder.Environment.WebRootPath ??
-    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), "uploads");
+
+// ── Uploads folder ────────────────────────────────────────────────────────
+var uploadsPath = Path.Combine(
+    builder.Environment.WebRootPath ??
+    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"),
+    "uploads");
 Directory.CreateDirectory(uploadsPath);
 
-app.UseCors("AllowFrontend");      // ← must be before UseStaticFiles
+// ── Middleware pipeline ───────────────────────────────────────────────────
 app.UseStaticFiles();
-app.UseHttpsRedirection();
-app.UseAuthentication();           // ← must be before UseAuthorization
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

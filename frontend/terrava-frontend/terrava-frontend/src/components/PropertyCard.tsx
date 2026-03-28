@@ -5,6 +5,7 @@ import PropertyPDFModal from "./PropertyPDFModal"
 import { PROPERTY_STATUSES, getStatus } from "../models/propertyStatus"
 import "./PropertyCard.css"
 
+
 const STATUS_DOT_CLASS: Record<string, string> = {
   available:   "status-dot-available",
   enquired:    "status-dot-enquired",
@@ -169,6 +170,15 @@ export default function PropertyCard({ property, index = 0, onDeleted, onStatusC
                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
               </svg>
             </button>
+            <button
+  className="detail-act detail-act-mkt"
+  onClick={() => navigate(`/marketing/${property.id}`)}
+>
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+  </svg>
+  Market
+</button>
             <button className="pcard-qbtn pcard-qbtn-del" onClick={() => setShowConfirm(true)} title="Delete">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                 <polyline points="3 6 5 6 21 6"/>

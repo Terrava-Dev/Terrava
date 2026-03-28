@@ -6,6 +6,8 @@ import AddPropertyPage from "./pages/AddPropertyPage"
 import LoginPage from "./pages/LoginPage"
 import EditPropertyPage from "./pages/EditPropertyPage"
 import SignupPage from "./pages/SignupPage"
+import MarketingPage from "./pages/MarketingPage"
+import MarketingPropertyPage  from "./pages/MarketingPropertyPage"
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { agent } = useAuth()
@@ -16,6 +18,8 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function App() {
   return (
     <Routes>
+      <Route path="/marketing" element={<MarketingPage />} />
+      <Route path="/marketing/:propertyId" element={<MarketingPropertyPage />} />
       <Route path="/login"  element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
 

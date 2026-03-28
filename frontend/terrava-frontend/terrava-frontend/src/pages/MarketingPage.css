@@ -1,0 +1,145 @@
+/* src/pages/MarketingPage.css */
+
+.mkt-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--color-background-secondary);
+  padding: 16px;
+  gap: 16px;
+}
+
+/* ── Title ── */
+.mkt-page h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ── Section ── */
+.mkt-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mkt-section label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* ── Select dropdown ── */
+.mkt-section select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 0.5px solid var(--color-border-tertiary);
+  background: var(--color-background-primary);
+  font-size: 13px;
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.mkt-section select:focus {
+  border-color: #1a2e44;
+}
+
+/* ── Button groups (Theme / Tone / Language) ── */
+.mkt-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Common button style ── */
+.mkt-section button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 0.5px solid var(--color-border-tertiary);
+  background: var(--color-background-primary);
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.15s ease;
+}
+
+/* Active state */
+.mkt-section button.active {
+  background: #1a2e44;
+  color: #fff;
+  border-color: #1a2e44;
+}
+
+/* Hover */
+.mkt-section button:hover {
+  opacity: 0.85;
+}
+
+/* ── Generate button ── */
+.mkt-page > button {
+  margin-top: 10px;
+  width: 100%;
+  background: #1a2e44;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mkt-page > button:hover {
+  background: #2d4a6e;
+}
+
+.mkt-page > button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Result ── */
+.mkt-result {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mkt-result h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Content */
+.mkt-result pre {
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--color-text-primary);
+}
+
+/* Hashtags */
+.mkt-result p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* ── Error ── */
+.mkt-page p[style] {
+  font-size: 13px;
+  margin-top: 8px;
+}
+/* Highlight language section */
+.mkt-section:nth-of-type(4) {
+  background: #f5f7fb;
+  padding: 10px;
+  border-radius: 10px;
+}

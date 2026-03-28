@@ -53,6 +53,15 @@ export default function Layout({ children }: Props) {
           </svg>
           <span>{t("nav_track")}</span>
         </NavLink>
+<NavLink
+  to="/marketing"
+  className={({ isActive }) => "bn-item" + (isActive ? " active" : "")}
+>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+  </svg>
+  <span>Market</span>
+</NavLink>
 
         {/* Language toggle */}
         <button

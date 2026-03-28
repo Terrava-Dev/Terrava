@@ -341,7 +341,11 @@
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 7px; margin-top: 16px; margin-bottom: 10px;
 }
-
+.detail-act-mkt {
+  background: linear-gradient(135deg, #c4973a, #a97e2e);
+  color: #fff;
+  border: none;
+}
 .detail-act {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   padding: 10px; border-radius: 8px;
