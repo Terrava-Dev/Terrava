@@ -26,34 +26,240 @@ type GeneratedContent = {
   hashtags: string
 }
 
+// ─── NEW: Follow-up prompt types ───────────────────────────
+type ReminderLead = {
+  id: number
+  title: string
+  locationName: string
+  totalPrice: number
+}
+
+const QUICK_OPTIONS = [
+  { label: "Tomorrow 9 AM", days: 1 },
+  { label: "In 2 days",     days: 2 },
+  { label: "This weekend",  days: 5 },
+]
+
+// ─── NEW: FollowUpPrompt component ─────────────────────────
+function FollowUpPrompt({
+  lead,
+  onSave,
+  onDismiss,
+}: {
+  lead: ReminderLead
+  onSave: (lead: ReminderLead, days: number | null, customDate?: Date) => void
+  onDismiss: () => void
+}) {
+  const [showCustom, setShowCustom] = useState(false)
+  const [customDate, setCustomDate] = useState("")
+  const [customTime, setCustomTime] = useState("09:00")
+
+  function handleCustomSave() {
+    if (!customDate) return
+    onSave(lead, null, new Date(`${customDate}T${customTime}`))
+  }
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        onClick={onDismiss}
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "rgba(0,0,0,0.4)",
+          zIndex: 999,
+        }}
+      />
+
+      {/* Bottom sheet */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          background: "#fff",
+          borderRadius: "16px 16px 0 0",
+          padding: "20px 20px 36px",
+          zIndex: 1000,
+          boxShadow: "0 -4px 24px rgba(0,0,0,0.12)",
+          maxWidth: 480,
+          margin: "0 auto",
+        }}
+      >
+        {/* Handle bar */}
+        <div
+          style={{
+            width: 36,
+            height: 4,
+            background: "#e0e0e0",
+            borderRadius: 2,
+            margin: "0 auto 20px",
+          }}
+        />
+
+        <p style={{ fontWeight: 600, fontSize: 16, margin: "0 0 4px", color: "#111" }}>
+          Set a follow-up reminder?
+        </p>
+        <p style={{ fontSize: 13, color: "#888", margin: "0 0 20px" }}>
+          {lead.title} · {lead.locationName}
+        </p>
+
+        {!showCustom ? (
+          <>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {QUICK_OPTIONS.map((opt) => (
+                <button
+                  key={opt.label}
+                  onClick={() => onSave(lead, opt.days)}
+                  style={{
+                    padding: "13px 16px",
+                    borderRadius: 10,
+                    border: "1.5px solid #e8e8e8",
+                    background: "#fafafa",
+                    fontSize: 15,
+                    fontWeight: 500,
+                    color: "#111",
+                    textAlign: "left",
+                    cursor: "pointer",
+                  }}
+                >
+                  {opt.label}
+                </button>
+              ))}
+              <button
+                onClick={() => setShowCustom(true)}
+                style={{
+                  padding: "13px 16px",
+                  borderRadius: 10,
+                  border: "1.5px solid #e8e8e8",
+                  background: "#fafafa",
+                  fontSize: 15,
+                  fontWeight: 500,
+                  color: "#111",
+                  textAlign: "left",
+                  cursor: "pointer",
+                }}
+              >
+                Custom date &amp; time...
+              </button>
+            </div>
+            <button
+              onClick={onDismiss}
+              style={{
+                marginTop: 16,
+                width: "100%",
+                padding: "12px",
+                border: "none",
+                background: "none",
+                fontSize: 14,
+                color: "#aaa",
+                cursor: "pointer",
+              }}
+            >
+              No reminder
+            </button>
+          </>
+        ) : (
+          <>
+            <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
+              <input
+                type="date"
+                value={customDate}
+                onChange={(e) => setCustomDate(e.target.value)}
+                min={new Date().toISOString().split("T")[0]}
+                style={{
+                  flex: 1,
+                  padding: "11px 12px",
+                  borderRadius: 10,
+                  border: "1.5px solid #e8e8e8",
+                  fontSize: 15,
+                  color: "#111",
+                }}
+              />
+              <input
+                type="time"
+                value={customTime}
+                onChange={(e) => setCustomTime(e.target.value)}
+                style={{
+                  width: 110,
+                  padding: "11px 12px",
+                  borderRadius: 10,
+                  border: "1.5px solid #e8e8e8",
+                  fontSize: 15,
+                  color: "#111",
+                }}
+              />
+            </div>
+            <button
+              onClick={handleCustomSave}
+              disabled={!customDate}
+              style={{
+                width: "100%",
+                padding: "13px",
+                borderRadius: 10,
+                border: "none",
+                background: customDate ? "#111" : "#ddd",
+                color: customDate ? "#fff" : "#aaa",
+                fontSize: 15,
+                fontWeight: 600,
+                cursor: customDate ? "pointer" : "not-allowed",
+                marginBottom: 10,
+              }}
+            >
+              Set reminder
+            </button>
+            <button
+              onClick={() => setShowCustom(false)}
+              style={{
+                width: "100%",
+                padding: "10px",
+                border: "none",
+                background: "none",
+                fontSize: 14,
+                color: "#aaa",
+                cursor: "pointer",
+              }}
+            >
+              Back
+            </button>
+          </>
+        )}
+      </div>
+    </>
+  )
+}
+// ───────────────────────────────────────────────────────────
+
 const THEMES = [
   { id: "standard", label: "Standard", icon: "home" },
-  { id: "diwali", label: "Diwali", icon: "lamp" },
-  { id: "pongal", label: "Pongal", icon: "harvest" },
-  { id: "summer", label: "Summer", icon: "sun" },
-  { id: "monsoon", label: "Monsoon", icon: "rain" },
-  { id: "newyear", label: "New Year", icon: "spark" },
+  { id: "diwali",   label: "Diwali",   icon: "lamp" },
+  { id: "pongal",   label: "Pongal",   icon: "harvest" },
+  { id: "summer",   label: "Summer",   icon: "sun" },
+  { id: "monsoon",  label: "Monsoon",  icon: "rain" },
+  { id: "newyear",  label: "New Year", icon: "spark" },
 ]
 
 const TONES = [
   { id: "Professional", icon: "brief" },
-  { id: "Friendly", icon: "smile" },
-  { id: "Urgent", icon: "bolt" },
-  { id: "Luxury", icon: "shine" },
+  { id: "Friendly",     icon: "smile" },
+  { id: "Urgent",       icon: "bolt" },
+  { id: "Luxury",       icon: "shine" },
 ]
 
 const LANGUAGES = [
-  { id: "en", label: "English", flag: "EN" },
-  { id: "ta", label: "Tamil", flag: "TA" },
-  { id: "kn", label: "Kannada", flag: "KN" },
-  { id: "te", label: "Telugu", flag: "TE" },
+  { id: "en", label: "English",  flag: "EN" },
+  { id: "ta", label: "Tamil",    flag: "TA" },
+  { id: "kn", label: "Kannada",  flag: "KN" },
+  { id: "te", label: "Telugu",   flag: "TE" },
 ]
 
 const PLATFORMS = [
-  { id: "whatsapp", label: "WhatsApp" },
+  { id: "whatsapp",  label: "WhatsApp" },
   { id: "instagram", label: "Instagram" },
-  { id: "facebook", label: "Facebook" },
-  { id: "sms", label: "SMS" },
+  { id: "facebook",  label: "Facebook" },
+  { id: "sms",       label: "SMS" },
 ]
 
 const LOADING_MESSAGES = [
@@ -64,26 +270,9 @@ const LOADING_MESSAGES = [
 ]
 
 type IconName =
-  | "property"
-  | "platforms"
-  | "theme"
-  | "tone"
-  | "language"
-  | "notes"
-  | "copy"
-  | "share"
-  | "spark"
-  | "image"
-  | "caption"
-  | "home"
-  | "lamp"
-  | "harvest"
-  | "sun"
-  | "rain"
-  | "brief"
-  | "smile"
-  | "bolt"
-  | "shine"
+  | "property" | "platforms" | "theme" | "tone" | "language" | "notes"
+  | "copy" | "share" | "spark" | "image" | "caption" | "home" | "lamp"
+  | "harvest" | "sun" | "rain" | "brief" | "smile" | "bolt" | "shine"
 
 function UiIcon({ name, className = "" }: { name: IconName; className?: string }) {
   switch (name) {
@@ -169,6 +358,11 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
   const [notice, setNotice] = useState("")
   const [copied, setCopied] = useState(false)
 
+  // ─── NEW: Reminder state ───────────────────────────────────
+  const [showReminderPrompt, setShowReminderPrompt] = useState(false)
+  const [reminderLead, setReminderLead] = useState<ReminderLead | null>(null)
+  // ──────────────────────────────────────────────────────────
+
   useEffect(() => {
     if (!generating) return
     const id = setInterval(() => setLoadingMsg((m) => (m + 1) % LOADING_MESSAGES.length), 1800)
@@ -187,7 +381,7 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
 
   const formatPrice = (n: number) =>
     n >= 10000000 ? `Rs.${(n / 10000000).toFixed(2)}Cr`
-    : n >= 100000 ? `Rs.${(n / 100000).toFixed(1)}L`
+    : n >= 100000  ? `Rs.${(n / 100000).toFixed(1)}L`
     : `Rs.${n.toLocaleString("en-IN")}`
 
   const buildBasicCaption = (property: Property) => {
@@ -197,15 +391,12 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
       `Area: ${property.totalAreaInSqFt.toLocaleString("en-IN")} sq ft`,
       `Price: ${formatPrice(property.totalPrice)}`,
     ]
-
     if (property.pricePerSqFt > 0) {
       lines.push(`Per sq ft: Rs.${property.pricePerSqFt.toLocaleString("en-IN")}`)
     }
-
     if (property.notes?.trim()) {
       lines.push(`Notes: ${property.notes.trim()}`)
     }
-
     return lines.join("\n")
   }
 
@@ -249,6 +440,7 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
     clearNotice()
   }
 
+  // ─── UPDATED: handleShare with reminder trigger ────────────
   const handleShare = async () => {
     if (!selectedProp || !combinedText) return
     setError("")
@@ -269,9 +461,23 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
           },
           "save",
         )
-        window.open(`https://wa.me/?text=${encodeURIComponent(combinedText + "\n\n(Image saved to your device. Attach it in WhatsApp.)")}`, "_blank")
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(combinedText + "\n\n(Image saved to your device. Attach it in WhatsApp.)")}`,
+          "_blank"
+        )
         setNotice("Image saved and WhatsApp opened.")
         clearNotice()
+
+        // ── Show follow-up reminder prompt ──
+        setReminderLead({
+          id: selectedProp.id,
+          title: selectedProp.title,
+          locationName: selectedProp.locationName,
+          totalPrice: selectedProp.totalPrice,
+        })
+        setShowReminderPrompt(true)
+        // ───────────────────────────────────
+
       } catch {
         setError("Unable to generate image for WhatsApp.")
       } finally {
@@ -313,11 +519,53 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
     }
 
     if (platform === "facebook") {
-      window.open(`https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(combinedText)}`, "_blank")
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(combinedText)}`,
+        "_blank"
+      )
       setNotice("Caption copied. You can paste it into Facebook after the window opens.")
       clearNotice()
     }
   }
+  // ──────────────────────────────────────────────────────────
+
+  // ─── NEW: Save reminder handler ───────────────────────────
+  const handleSaveReminder = async (
+    lead: ReminderLead,
+    days: number | null,
+    customDate?: Date
+  ) => {
+    try {
+      let followUpAt: Date
+      if (customDate) {
+        followUpAt = customDate
+      } else {
+        followUpAt = new Date()
+        followUpAt.setDate(followUpAt.getDate() + (days ?? 1))
+        followUpAt.setHours(9, 0, 0, 0)
+      }
+
+      await fetch(`${BASE_URL}/reminders`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          agentId: agent?.agentId,
+          propertyId: lead.id,
+          propertyTitle: lead.title,
+          followUpAt: followUpAt.toISOString(),
+          note: `Sent property details via WhatsApp`,
+        }),
+      })
+
+      setNotice(`Reminder set for ${followUpAt.toLocaleDateString("en-IN")}`)
+      clearNotice()
+    } catch {
+      setError("Could not save reminder. Try again.")
+    } finally {
+      setShowReminderPrompt(false)
+    }
+  }
+  // ──────────────────────────────────────────────────────────
 
   const handleGenerateImage = async () => {
     if (!selectedProp) return
@@ -406,9 +654,7 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
               className={`mkt-mode-btn ${captionMode === "custom" ? "active" : ""}`}
               onClick={() => {
                 setCaptionMode("custom")
-                if (selectedProp) {
-                  setCaption(buildBasicCaption(selectedProp))
-                }
+                if (selectedProp) setCaption(buildBasicCaption(selectedProp))
                 setHashtags("")
               }}
             >
@@ -417,7 +663,9 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
             </button>
           </div>
           <p className="mkt-help">
-            {captionMode === "ai" ? "Use AI to draft a caption, then edit it before sharing." : "Write your own caption and hashtags manually."}
+            {captionMode === "ai"
+              ? "Use AI to draft a caption, then edit it before sharing."
+              : "Write your own caption and hashtags manually."}
           </p>
         </div>
 
@@ -447,113 +695,112 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
         {notice && <div className="mkt-notice"><span>i</span>{notice}</div>}
 
         {captionMode === "ai" && (
-        <div className="mkt-result">
-          <div className="mkt-result-header">
-            <span className="mkt-result-title">
-              <UiIcon name="caption" className="mkt-inline-icon" />
-              Caption Editor
-            </span>
-            <div className="mkt-result-actions">
-              <button type="button" className={`mkt-icon-btn ${copied ? "copied" : ""}`} onClick={handleCopyCaption} title="Copy caption">
-                <UiIcon name="copy" className="mkt-action-icon" />
-              </button>
+          <div className="mkt-result">
+            <div className="mkt-result-header">
+              <span className="mkt-result-title">
+                <UiIcon name="caption" className="mkt-inline-icon" />
+                Caption Editor
+              </span>
+              <div className="mkt-result-actions">
+                <button type="button" className={`mkt-icon-btn ${copied ? "copied" : ""}`} onClick={handleCopyCaption} title="Copy caption">
+                  <UiIcon name="copy" className="mkt-action-icon" />
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div className="mkt-result-body">
-            <div className="mkt-result-settings">
-              <div className="mkt-settings-group">
-                <div className="mkt-sub-label">
-                  <UiIcon name="theme" className="mkt-mini-icon" />
-                  Theme
+            <div className="mkt-result-body">
+              <div className="mkt-result-settings">
+                <div className="mkt-settings-group">
+                  <div className="mkt-sub-label">
+                    <UiIcon name="theme" className="mkt-mini-icon" />
+                    Theme
+                  </div>
+                  <div className="mkt-btn-group">
+                    {THEMES.map((t) => (
+                      <button key={t.id} type="button" className={`mkt-chip ${theme === t.id ? "active" : ""}`} onClick={() => setTheme(t.id)}>
+                        <UiIcon name={t.icon as IconName} className="mkt-chip-svg" />
+                        {t.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div className="mkt-btn-group">
-                  {THEMES.map((t) => (
-                    <button key={t.id} type="button" className={`mkt-chip ${theme === t.id ? "active" : ""}`} onClick={() => setTheme(t.id)}>
-                      <UiIcon name={t.icon as IconName} className="mkt-chip-svg" />
-                      {t.label}
-                    </button>
-                  ))}
+
+                <div className="mkt-settings-group">
+                  <div className="mkt-sub-label">
+                    <UiIcon name="tone" className="mkt-mini-icon" />
+                    Tone
+                  </div>
+                  <div className="mkt-btn-group">
+                    {TONES.map((t) => (
+                      <button key={t.id} type="button" className={`mkt-chip ${tone === t.id ? "active" : ""}`} onClick={() => setTone(t.id)}>
+                        <UiIcon name={t.icon as IconName} className="mkt-chip-svg" />
+                        {t.id}
+                      </button>
+                    ))}
+                  </div>
                 </div>
+
+                <div className="mkt-settings-group">
+                  <div className="mkt-sub-label">
+                    <UiIcon name="language" className="mkt-mini-icon" />
+                    Language
+                  </div>
+                  <div className="mkt-btn-group">
+                    {LANGUAGES.map((l) => (
+                      <button key={l.id} type="button" className={`mkt-chip ${language === l.id ? "active" : ""}`} onClick={() => setLanguage(l.id)}>
+                        <span className="mkt-chip-flag">{l.flag}</span>
+                        {l.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mkt-settings-group">
+                  <div className="mkt-sub-label">
+                    <UiIcon name="notes" className="mkt-mini-icon" />
+                    Special Instructions <span className="mkt-sub-label-optional">(optional)</span>
+                  </div>
+                  <textarea
+                    className="mkt-textarea"
+                    placeholder="e.g. Human style caption, DTCP approved, near highway..."
+                    value={customNote}
+                    onChange={(e) => setCustomNote(e.target.value)}
+                    maxLength={200}
+                  />
+                  <div className="mkt-char-count">{customNote.length}/200</div>
+                </div>
+
+                <button type="button" className="mkt-generate-btn mkt-generate-btn-inline" onClick={handleGenerateCaption} disabled={generating || !selectedProp}>
+                  <UiIcon name="spark" className="mkt-inline-icon" />
+                  {generating ? "Generating AI Caption..." : "Generate AI Caption"}
+                </button>
               </div>
 
-              <div className="mkt-settings-group">
-                <div className="mkt-sub-label">
-                  <UiIcon name="tone" className="mkt-mini-icon" />
-                  Tone
-                </div>
-                <div className="mkt-btn-group">
-                  {TONES.map((t) => (
-                    <button key={t.id} type="button" className={`mkt-chip ${tone === t.id ? "active" : ""}`} onClick={() => setTone(t.id)}>
-                      <UiIcon name={t.icon as IconName} className="mkt-chip-svg" />
-                      {t.id}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <div className="mkt-result-divider" />
 
-              <div className="mkt-settings-group">
-                <div className="mkt-sub-label">
-                  <UiIcon name="language" className="mkt-mini-icon" />
-                  Language
-                </div>
-                <div className="mkt-btn-group">
-                  {LANGUAGES.map((l) => (
-                    <button key={l.id} type="button" className={`mkt-chip ${language === l.id ? "active" : ""}`} onClick={() => setLanguage(l.id)}>
-                      <span className="mkt-chip-flag">{l.flag}</span>
-                      {l.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mkt-settings-group">
-                <div className="mkt-sub-label">
-                  <UiIcon name="notes" className="mkt-mini-icon" />
-                  Special Instructions <span className="mkt-sub-label-optional">(optional)</span>
-                </div>
+              <div>
+                <div className="mkt-result-section-label">Caption</div>
                 <textarea
-                  className="mkt-textarea"
-                  placeholder="e.g. Human style caption, DTCP approved, near highway..."
-                  value={customNote}
-                  onChange={(e) => setCustomNote(e.target.value)}
-                  maxLength={200}
+                  className="mkt-result-editor"
+                  value={caption}
+                  onChange={(e) => setCaption(e.target.value)}
+                  placeholder={captionMode === "ai" ? "Generate an AI caption, then edit it here." : "Write your custom caption here."}
                 />
-                <div className="mkt-char-count">{customNote.length}/200</div>
               </div>
 
-              <button type="button" className="mkt-generate-btn mkt-generate-btn-inline" onClick={handleGenerateCaption} disabled={generating || !selectedProp}>
-                <UiIcon name="spark" className="mkt-inline-icon" />
-                {generating ? "Generating AI Caption..." : "Generate AI Caption"}
-              </button>
+              <div className="mkt-result-divider" />
+
+              <div>
+                <div className="mkt-result-section-label">Hashtags</div>
+                <textarea
+                  className="mkt-result-editor mkt-result-editor-tags"
+                  value={hashtags}
+                  onChange={(e) => setHashtags(e.target.value)}
+                  placeholder="#hashtags"
+                />
+              </div>
             </div>
-
-            <div className="mkt-result-divider" />
-
-            <div>
-              <div className="mkt-result-section-label">Caption</div>
-              <textarea
-                className="mkt-result-editor"
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}
-                placeholder={captionMode === "ai" ? "Generate an AI caption, then edit it here." : "Write your custom caption here."}
-              />
-            </div>
-
-            <div className="mkt-result-divider" />
-
-            <div>
-              <div className="mkt-result-section-label">Hashtags</div>
-              <textarea
-                className="mkt-result-editor mkt-result-editor-tags"
-                value={hashtags}
-                onChange={(e) => setHashtags(e.target.value)}
-                placeholder="#hashtags"
-              />
-            </div>
-
           </div>
-        </div>
         )}
 
         <div className="mkt-card">
@@ -584,18 +831,18 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
             Share Property
           </div>
           <p className="mkt-help">
-            {platform === "whatsapp" && "This will save the image first, then open WhatsApp with your caption."}
+            {platform === "whatsapp"  && "This will save the image first, then open WhatsApp with your caption."}
             {platform === "instagram" && "This will copy the caption and save the image for posting on Instagram."}
-            {platform === "facebook" && "This will open Facebook sharing and keep your caption ready to paste."}
-            {platform === "sms" && "This will open your SMS app with the caption text."}
+            {platform === "facebook"  && "This will open Facebook sharing and keep your caption ready to paste."}
+            {platform === "sms"       && "This will open your SMS app with the caption text."}
           </p>
           <div className="mkt-action-row">
             <button type="button" className="mkt-share-btn primary" onClick={handleShare} disabled={!selectedProp || !combinedText || savingImage}>
               <PlatformIcon id={platform} className="mkt-share-icon" />
-              {platform === "whatsapp" && (savingImage ? "Preparing WhatsApp..." : "Share via WhatsApp")}
+              {platform === "whatsapp"  && (savingImage ? "Preparing WhatsApp..."  : "Share via WhatsApp")}
               {platform === "instagram" && (savingImage ? "Preparing Instagram..." : "Share via Instagram")}
-              {platform === "facebook" && "Share via Facebook"}
-              {platform === "sms" && "Share via SMS"}
+              {platform === "facebook"  && "Share via Facebook"}
+              {platform === "sms"       && "Share via SMS"}
             </button>
             <button type="button" className="mkt-share-btn" onClick={handleGenerateImage} disabled={savingImage || !selectedProp}>
               <UiIcon name="image" className="mkt-share-icon" />
@@ -604,6 +851,16 @@ export default function MarketingPage({ preselectedProperty }: { preselectedProp
           </div>
         </div>
       </div>
+
+      {/* ─── NEW: Follow-up reminder prompt ─────────────────── */}
+      {showReminderPrompt && reminderLead && (
+        <FollowUpPrompt
+          lead={reminderLead}
+          onSave={handleSaveReminder}
+          onDismiss={() => setShowReminderPrompt(false)}
+        />
+      )}
+      {/* ───────────────────────────────────────────────────── */}
     </div>
   )
 }

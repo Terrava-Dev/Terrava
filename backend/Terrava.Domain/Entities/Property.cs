@@ -17,6 +17,11 @@ public class Property
     public string? Status { get; set; }
     public string? Notes { get; set; }
 
+    // ── Legal Approvals ───────────────────────────────
+    public bool DtcpApproved { get; set; } = false;
+    public bool ReraApproved { get; set; } = false;
+    public string? ReraNumber { get; set; }
+
     public int AgentId { get; set; }
     public Agent? Agent { get; set; }
     public ICollection<PropertyImage>? Images { get; set; }

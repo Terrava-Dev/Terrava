@@ -12,6 +12,13 @@ html, body, #root {
   background: transparent;
 }
 
+.app-install-banner {
+  position: fixed;
+  right: 14px;
+  bottom: calc(var(--nav-h) + 14px);
+  z-index: 105;
+}
+
 .app-main {
   flex: 1;
   width: 100%;
@@ -160,6 +167,11 @@ html, body, #root {
 
 /* Desktop sidebar */
 @media (min-width: 1024px) {
+  .app-install-banner {
+    right: 22px;
+    bottom: 22px;
+  }
+
   .app-shell {
     flex-direction: row;
     min-height: 100vh;

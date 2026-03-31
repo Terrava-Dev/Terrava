@@ -30,6 +30,10 @@ public class PropertiesController : ControllerBase
         p.Status,
         p.Notes,
         p.AgentId,
+        // ── Legal Approvals ──────────────────────────
+        p.DtcpApproved,
+        p.ReraApproved,
+        p.ReraNumber,
         Images = p.Images?
             .Select(i => new { i.Id, i.ImageUrl, i.PropertyId }).ToList(),
         BoundaryPoints = p.BoundaryPoints?
@@ -85,12 +89,16 @@ public class PropertiesController : ControllerBase
         existing.Status = updatedProperty.Status;
         existing.Notes = updatedProperty.Notes;
         existing.AgentId = updatedProperty.AgentId;
+        // ── Legal Approvals ──────────────────────────
+        existing.DtcpApproved = updatedProperty.DtcpApproved;
+        existing.ReraApproved = updatedProperty.ReraApproved;
+        existing.ReraNumber = updatedProperty.ReraNumber;
 
         await _context.SaveChangesAsync();
         return NoContent();
     }
 
-    // PATCH: api/properties/{id}/status  — quick status update without full PUT
+    // PATCH: api/properties/{id}/status
     [HttpPatch("{id:int}/status")]
     public async Task<IActionResult> UpdateStatus(int id, [FromBody] StatusUpdateRequest req)
     {

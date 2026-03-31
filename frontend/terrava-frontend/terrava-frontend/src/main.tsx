@@ -4,7 +4,10 @@ import { BrowserRouter } from "react-router-dom"
 import { LanguageProvider } from "./context/LanguageContext"
 import { AuthProvider } from "./context/AuthContext"
 import App from "./App"
+import { registerServiceWorker } from "./utils/registerServiceWorker"
 import "./theme.css"
+
+registerServiceWorker()
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

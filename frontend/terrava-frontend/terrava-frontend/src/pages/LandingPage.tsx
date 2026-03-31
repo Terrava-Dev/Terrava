@@ -4,6 +4,7 @@
 
 import { useNavigate } from "react-router-dom"
 import appLogo from "../assets/logo.png"
+import PWAInstallButton from "../components/PWAInstallButton"
 import "./LandingPage.css"
 
 const FEATURES = [
@@ -54,6 +55,7 @@ export default function LandingPage() {
               </svg>
               Get Started
             </button>
+            <PWAInstallButton className="lp-btn-install" label="Download App" />
             <a href="#features" className="lp-btn-secondary">See Features ↓</a>
           </div>
 

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"
 import { useLang } from "../context/LanguageContext"
+import PWAInstallButton from "./PWAInstallButton"
 import "./Layout.css"
 
 type Props = { children: React.ReactNode }
@@ -9,6 +10,10 @@ export default function Layout({ children }: Props) {
 
   return (
     <div className="app-shell">
+      <div className="app-install-banner">
+        <PWAInstallButton compact label="Download" />
+      </div>
+
       <main className="app-main">
         {children}
       </main>

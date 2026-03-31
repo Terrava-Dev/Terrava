@@ -9,6 +9,7 @@ import SignupPage from "./pages/SignupPage"
 import MarketingPage from "./pages/MarketingPage"
 import MarketingPropertyPage  from "./pages/MarketingPropertyPage"
 import LandingPage from "./pages/LandingPage"
+import MeetingSchedulerPage from "./pages/MeetingSchedulerPage"
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { agent } = useAuth()
@@ -60,6 +61,12 @@ function App() {
       <Route path="/share-property/:propertyId" element={
         <ProtectedRoute>
           <Layout><MarketingPropertyPage /></Layout>
+        </ProtectedRoute>
+      }/>
+
+      <Route path="/track" element={
+        <ProtectedRoute>
+          <Layout><MeetingSchedulerPage /></Layout>
         </ProtectedRoute>
       }/>
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Terrava.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Terrava.Infrastructure.Data;
 namespace Terrava.Infrastructure.Migrations
 {
     [DbContext(typeof(TerravaDbContext))]
-    partial class TerravaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260328171950_AddDtcpRera")]
+    partial class AddDtcpRera
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

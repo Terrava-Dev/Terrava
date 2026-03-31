@@ -156,6 +156,10 @@
 }
 .lp-btn-primary:hover { transform: translateY(-2px); box-shadow: var(--glass-shadow); }
 
+.lp-btn-install {
+  width: 100%;
+}
+
 .lp-btn-secondary {
   display: flex;
   align-items: center;
@@ -523,6 +527,7 @@
 @media (min-width: 768px) {
   .lp-hero { padding: 80px 40px 60px; }
   .lp-cta { flex-direction: row; max-width: none; justify-content: center; }
+  .lp-btn-install { width: auto; }
   .lp-phone { display: none; }
 }
 

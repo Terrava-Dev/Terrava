@@ -1,0 +1,23 @@
+{
+  "name": "Terrava",
+  "short_name": "Terrava",
+  "description": "Property management and meeting scheduler for real estate agents.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#eef4ff",
+  "theme_color": "#1f2d4a",
+  "icons": [
+    {
+      "src": "/terrava-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
