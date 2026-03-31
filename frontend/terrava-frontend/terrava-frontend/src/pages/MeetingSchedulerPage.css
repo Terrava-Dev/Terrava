@@ -428,7 +428,6 @@
   padding: 16px;
   background: rgba(15, 25, 35, 0.38);
   backdrop-filter: blur(10px);
-  overflow: auto;
 }
 
 .scheduler-modal {
@@ -437,7 +436,6 @@
   justify-items: center;
   max-height: 100vh;
   overflow: auto;
-  padding: 8px 0;
 }
 
 .scheduler-form-modal {
