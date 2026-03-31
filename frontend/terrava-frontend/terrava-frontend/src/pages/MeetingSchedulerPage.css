@@ -428,12 +428,23 @@
   padding: 16px;
   background: rgba(15, 25, 35, 0.38);
   backdrop-filter: blur(10px);
+  overflow: auto;
 }
 
 .scheduler-modal {
   width: 100%;
   display: grid;
   justify-items: center;
+  max-height: 100vh;
+  overflow: auto;
+  padding: 8px 0;
+}
+
+.scheduler-form-modal {
+  width: min(640px, calc(100vw - 28px));
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-radius: 22px;
 }
 
 .scheduler-day-menu-wrap {
